@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sepsis Risk Prediction</title>
+
+<link rel="stylesheet"
+      href="../static/style.css">
+
+</head>
+
+<body>
+<div class="container">
+
+    <h1>Sepsis Risk Prediction</h1>
+
+    <p class="subtitle">
+        Enter patient information to predict sepsis risk.
+    </p>
+
+    <form action="/predict" method="POST">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label>Age</label>
+                <input type="number"
+                       name="age"
+                       step="any"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Gender</label>
+                <select name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>BMI</label>
+                <input type="number"
+                       name="bmi"
+                       step="any"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Heart Rate (Mean)</label>
+                <input type="number"
+                       name="hr_mean"
+                       step="any"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Systolic BP (Mean)</label>
+                <input type="number"
+                       name="sbp_mean"
+                       step="any"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Diastolic BP (Mean)</label>
+                <input type="number"
+                       name="dbp_mean"
+                       step="any"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Temperature (°C)</label>
+                <input type="number"
+                       name="temp_celsius_mean"
+                       step="any"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Respiratory Rate (Mean)</label>
+                <input type="number"
+                       name="respiratory_rate_mean"
+                       step="any"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>SpO₂ (Mean)</label>
+                <input type="number"
+                       name="spo2_mean"
+                       step="any"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>MAP (Mean)</label>
+                <input type="number"
+                       name="map_mean"
+                       step="any"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>PaO₂/FiO₂ Ratio</label>
+                <input type="number"
+                       name="pao2_fio2_ratio"
+                       step="any"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Total Bilirubin</label>
+                <input type="number"
+                       name="bilirubin_total"
+                       step="any"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Arterial pH</label>
+                <input type="number"
+                       name="ph_arterial"
+                       step="any"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Sodium</label>
+                <input type="number"
+                       name="sodium"
+                       step="any"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>GCS Total</label>
+                <input type="number"
+                       name="gcs_total"
+                       step="any"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Creatinine</label>
+                <input type="number"
+                       name="creatinine"
+                       step="any"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Chronic Kidney Disease</label>
+                <select name="chronic_kidney_disease" required>
+                    <option value="">Select</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>WBC</label>
+                <input type="number"
+                       name="wbc"
+                       step="any"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Platelet Count</label>
+                <input type="number"
+                       name="platelet_count"
+                       step="any"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Hemoglobin</label>
+                <input type="number"
+                       name="hemoglobin"
+                       step="any"
+                       required>
+            </div>
+
+        </div>
+
+        <button type="submit">
+            Predict Sepsis Risk
+        </button>
+
+    </form>
+
+
+    {% if prediction %}
+
+    <div class="result">
+
+        <h2>Prediction Result</h2>
+
+        <p>
+            <strong>Prediction:</strong>
+            {{ prediction }}
+        </p>
+
+        <p>
+            <strong>Sepsis Probability:</strong>
+            {{ probability }}%
+        </p>
+
+    </div>
+
+    {% endif %}
+
+
+    {% if error %}
+
+    <div class="error">
+
+        <h3>Error</h3>
+
+        <p>{{ error }}</p>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>
